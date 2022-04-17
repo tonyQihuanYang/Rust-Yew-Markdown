@@ -1,0 +1,35 @@
+schema {
+  query: QueryRoot
+  mutation: MutationRoot
+}
+
+type QueryRoot {
+  allMarkdowns: [Markdown!]!
+  markdownById(id: String!): Markdown!
+}
+
+type MutationRoot {
+  createMarkdown(newMarkdown: MarkdownInput!): Markdown!
+  updateMarkdown(input: MarkdownUpdateInput!): Markdown!
+  deleteMarkdown(id: String!): Markdown!
+}
+
+input MarkdownInput {
+  title: String!
+  context: String!
+}
+
+input MarkdownUpdateInput {
+  id: String!
+  title: String
+  context: String
+}
+
+
+type Markdown {
+  id: String!
+  title: String!
+  context: String!
+}
+
+

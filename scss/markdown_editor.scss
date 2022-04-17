@@ -1,0 +1,26 @@
+.md-editor-wrapper {
+  display: flex;
+  /* height: 100%; */
+  height: calc(100% - 60px);
+  width: 100%;
+  justify-content: space-between;
+}
+
+.md-editor-textarea {
+  display: flex;
+  flex: 1;
+}
+.md-editor-textarea textarea {
+  display: flex;
+  flex: 1;
+}
+
+.md-editor-preview {
+  display: flex;
+  flex: 1;
+}
+
+// Markdown-preview
+.md-preview-wrapper {
+  overflow-y: auto;
+}

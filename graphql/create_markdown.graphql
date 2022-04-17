@@ -1,0 +1,9 @@
+mutation CreateMarkdown($newMarkdown: MarkdownInput!){
+  createMarkdown(
+    newMarkdown: $newMarkdown
+  ) {
+    id
+    title
+    context
+  }
+}

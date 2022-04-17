@@ -1,0 +1,26 @@
+@import './drawer.scss';
+@import './markdown_editor.scss';
+@import './markdown_preview.scss';
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.visiable-block {
+  display: block !important;
+}
+
+.no-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}

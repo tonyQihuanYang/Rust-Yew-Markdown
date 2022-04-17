@@ -1,0 +1,7 @@
+query MarkdownById($id: String!){
+  markdownById(id: $id) {
+    id
+    title
+    context
+  }
+}

@@ -1,0 +1,7 @@
+query AllMarkdowns {
+  allMarkdowns {
+    id
+    title
+    context
+  }
+}
