@@ -4,6 +4,12 @@
 trunk serve
 ```
 
+###### Run in Pm2
+
+```
+ pm2 start --name "Yew Markdown" ./start.sh
+```
+
 ### Libraries
 
 - Markdown parser [pulldown-cmark](https://github.com/raphlinus/pulldown-cmark/blob/master/examples/string-to-string.rs)
