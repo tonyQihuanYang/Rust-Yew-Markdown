@@ -1,1 +1,2 @@
-trunk serve --release --port=9010
+trunk serve --release
+
