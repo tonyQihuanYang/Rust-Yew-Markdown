@@ -2,6 +2,7 @@ mod app;
 mod features;
 mod graphql_requests;
 mod models;
+mod components;
 
 use app::App;
 

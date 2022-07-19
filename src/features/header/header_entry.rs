@@ -2,7 +2,7 @@ use yew::prelude::*;
 
 use crate::models::{markdown::Markdown, user_setting::Setting};
 
-use super::header_features::{add_markdown_button::AddMarkdownButton, user_setting::UserSetting};
+use super::header_features::{login_button::LoginButton, add_markdown_button::AddMarkdownButton, user_setting::UserSetting};
 
 #[derive(PartialEq, Clone, Properties)]
 pub struct HeaderEntryProps {
@@ -24,6 +24,7 @@ pub fn header_entry(props: &HeaderEntryProps) -> Html {
                 user_setting={default_user_setting.clone()}
                 on_update={on_user_setting_update.clone()}
             />
+            <LoginButton/>
             <AddMarkdownButton
                 on_new_markdown={on_new_markdown.clone()}
             />
