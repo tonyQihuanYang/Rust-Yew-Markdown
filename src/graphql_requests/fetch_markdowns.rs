@@ -32,7 +32,7 @@ pub async fn fetch_markdowns() -> Result<Vec<Markdown>, JsValue> {
     opts.method("POST");
     opts.body(Some(&JsValue::from_str(query.to_string().as_str())));
     opts.mode(RequestMode::Cors);
-    let url = String::from("http://localhost:8081/graphql");
+    let url = String::from("https://apps.gummui.com/markdown-api/graphql");
     let request = Request::new_with_str_and_init(url.as_str(), &opts)?;
     request.headers().set("Content-Type", "application/json")?;
 
