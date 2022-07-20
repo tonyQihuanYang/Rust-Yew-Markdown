@@ -1,5 +1,5 @@
 use yew::prelude::*;
-
+use super::overlay::GmOverlay;
 #[derive(PartialEq, Clone, Properties)]
 pub struct GmModalProps {
     pub visible: bool,
@@ -46,7 +46,7 @@ pub fn gm_modal(props: &GmModalProps) -> Html {
     };
 
     return html! (
-        <>
+        <GmOverlay>
             <div
                 class={classes!("modal", hidden_class)}
                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,7 +69,7 @@ pub fn gm_modal(props: &GmModalProps) -> Html {
                 </div>
                 </div>
             </div>
-        </>
+        </GmOverlay>
     );
 }
 

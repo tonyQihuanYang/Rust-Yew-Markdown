@@ -31,7 +31,7 @@ use crate::components::modal::GmModal;
                visible={*is_modal_visiable}
                handle_close={handle_close} 
             >
-            {"xxxx"}
+                <LoginForm/>
             </GmModal>    
 
         </>
@@ -39,3 +39,17 @@ use crate::components::modal::GmModal;
  }
 
 
+#[function_component(LoginForm)]
+pub fn login_form() -> Html {
+    return html! {
+        <>
+            <form>
+                <label for="fname"> {"First name:"} </label>
+                <input type="text" id="fname" name="fname"/>
+                <label for="lname"> {"Last name:"} </label>
+                <input type="text" id="lname" name="lname"/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </>
+    }
+}
