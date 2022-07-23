@@ -22,7 +22,7 @@ use crate::components::modal::GmModal;
 
      return html! {
         <>
-            <GmButton title="test"
+            <GmButton title="Login"
             on_click={on_click}
 
             ></GmButton>
