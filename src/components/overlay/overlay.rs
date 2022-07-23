@@ -4,8 +4,8 @@ use yew::prelude::*;
 
 #[derive(PartialEq, Clone, Properties)]
 pub struct GmOverlayProps {
-    pub on_close: Callback<()>,
     pub children: Children,
+    pub on_click_outside: Callback<MouseEvent>,
 }
 use std::sync::atomic::{AtomicUsize, Ordering};
 static GLOBAL_OVERLAY_ID: AtomicUsize = AtomicUsize::new(0);
@@ -22,21 +22,22 @@ fn generate_id(prefix: String) -> String {
 
 #[function_component(GmOverlay)]
 pub fn gm_overlay(props: &GmOverlayProps) -> Html {
-    let GmOverlayProps { on_close, children } = props;
     let id = generate_id(String::from("GM_OVERLAY"));
+    let GmOverlayProps {
+        children,
+        on_click_outside,
+    } = props;
     let click_on_overlay = {
-        let on_close = on_close.clone();
+        let on_click_outside = on_click_outside.clone();
         let id = id.clone();
         Callback::from(move |e: MouseEvent| {
             e.prevent_default();
-            match e.target().and_then(|t| t.dyn_into::<HtmlElement>().ok()) {
-                Some(current_element) => {
-                    if current_element.id() == id {
-                        log::info!("comes here");
-                        on_close.emit({});
-                    }
+            if let Some(current_element) = e.target().and_then(|t| t.dyn_into::<HtmlElement>().ok())
+            {
+                if current_element.id() == id {
+                    log::info!("comes here");
+                    on_click_outside.emit(e);
                 }
-                None => {}
             }
         })
     };

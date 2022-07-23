@@ -1,58 +1,37 @@
-use super::overlay::overlay::GmOverlay;
+use crate::components::overlay::overlay::GmOverlay;
 use yew::prelude::*;
 #[derive(PartialEq, Clone, Properties)]
 pub struct GmModalProps {
-    pub visible: bool,
-    pub handle_close: Callback<()>,
     pub children: Children,
+    pub visible: UseStateHandle<bool>,
+    pub on_modal_close: Option<Callback<()>>,
 }
 
 #[function_component(GmModal)]
 pub fn gm_modal(props: &GmModalProps) -> Html {
     let GmModalProps {
-        visible,
         children,
-        handle_close,
+        visible,
+        on_modal_close,
     } = props;
-    let is_modal_visiable = use_state(|| visible.clone());
-
-    use_effect_with_deps(
-        {
-            let is_modal_visiable = is_modal_visiable.clone();
-            let visible = visible.clone();
-            move |_| {
-                is_modal_visiable.set(visible);
-                || ()
-            }
-        },
-        visible.clone(), // dependents
-    );
-
-    let hidden_class = if !(*is_modal_visiable) {
-        "hidden"
-    } else {
-        "visiable-block"
-    };
-    let open_modal = {
-        let is_modal_visiable = is_modal_visiable.clone();
-        Callback::from(move |_: MouseEvent| {
-            is_modal_visiable.set(true);
-        })
-    };
 
     let close_modal = {
-        let is_modal_visiable = is_modal_visiable.clone();
-        let handle_close = handle_close.clone();
+        let is_modal_visiable = visible.clone();
+        let on_modal_close = on_modal_close.clone();
         Callback::from(move |_: MouseEvent| {
             is_modal_visiable.set(false);
-            handle_close.emit({});
+            if let Some(on_modal_close) = on_modal_close.clone() {
+                on_modal_close.emit({});
+            }
         })
     };
 
-    if *is_modal_visiable.clone() {
+    if (*visible.clone()) == false {
+        return html!(<></>);
+    } else {
         return html! (
             <GmOverlay
-                on_close={handle_close.clone()}
+                on_click_outside={close_modal.clone()}
             >
                 <div class="modal-content">
                     <div class="modal-header">
@@ -72,7 +51,5 @@ pub fn gm_modal(props: &GmModalProps) -> Html {
                 </div>
             </GmOverlay>
         );
-    } else {
-        return html! (<></>);
     }
 }
