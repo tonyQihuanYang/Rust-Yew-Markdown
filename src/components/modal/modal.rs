@@ -33,6 +33,7 @@ pub fn gm_modal(props: &GmModalProps) -> Html {
             <GmOverlay
                 on_click_outside={close_modal.clone()}
             >
+                <div class="gm-modal">
                 <div class="modal-content">
                     <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{"Create a new markdown"}</h5>
@@ -48,6 +49,7 @@ pub fn gm_modal(props: &GmModalProps) -> Html {
                             onclick={close_modal.clone()}
                         >{"Close"}</button>
                      </div>
+                </div>
                 </div>
             </GmOverlay>
         );
