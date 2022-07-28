@@ -1,6 +1,8 @@
 @import './drawer.scss';
 @import './markdown_editor.scss';
 @import './markdown_preview.scss';
+/** Components Style */
+@import '../src/components/components.scss';
 
 html,
 body {
