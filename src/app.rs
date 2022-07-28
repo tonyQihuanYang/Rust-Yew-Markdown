@@ -1,7 +1,6 @@
 use crate::{
     features::{
-        header::header_entry::HeaderEntryComponent,
-        markdown_editor::markdown_entry::MarkdownEntry,
+        header::header_entry::HeaderEntryComponent, markdown_editor::markdown_entry::MarkdownEntry,
         markdown_list::markdown_list::MarkdownList,
     },
     graphql_requests::{
@@ -16,8 +15,12 @@ use wasm_bindgen_futures::spawn_local;
 use web_sys::{HtmlInputElement, InputEvent};
 use yew::{function_component, html, use_state, Callback, TargetCast};
 
+use crate::{env::APIEnvironmentVariables, ENV};
+
 #[function_component(App)]
 pub fn app() -> Html {
+    // let APIEnvironmentVariables { url } = &ENV.api_env;
+    // log::info!("{}", url);
     let user_setting = use_state(|| Setting::new());
     let markdowns = use_state(|| Vec::<Markdown>::new());
     let markdown_selected = use_state(|| Markdown::default());
