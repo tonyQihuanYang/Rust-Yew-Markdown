@@ -1,7 +1,7 @@
 use yew::prelude::*;
 
 use crate::components::button::GmButton;
-use crate::components::modal::modal::GmModal;
+use crate::components::gm_modal::modal::GmModal;
 
 #[function_component(LoginButton)]
 pub fn login_button() -> Html {

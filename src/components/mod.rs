@@ -1,3 +1,3 @@
 pub mod button;
-pub mod modal;
+pub mod gm_modal;
 pub mod overlay;
