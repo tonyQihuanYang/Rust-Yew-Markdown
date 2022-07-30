@@ -18,9 +18,11 @@
 .md-editor-preview {
   display: flex;
   flex: 1;
+  overflow: auto;
 }
 
 // Markdown-preview
 .md-preview-wrapper {
   overflow-y: auto;
 }
+
