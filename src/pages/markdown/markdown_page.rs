@@ -4,9 +4,9 @@ use yew::prelude::*;
 use yew::{function_component, html, use_state, Callback, TargetCast};
 
 use crate::{
-    features::{
-        header::header_entry::HeaderEntryComponent, markdown_editor::markdown_entry::MarkdownEntry,
-        markdown_list::markdown_list::MarkdownList,
+    features::header::header_entry::HeaderEntryComponent,
+    features::markdown_page::{
+        markdown_editor::markdown_entry::MarkdownEntry, markdown_list::markdown_list::MarkdownList,
     },
     graphql_requests::{
         fetch_markdown_by_id::fetch_markdown_by_id, fetch_markdowns::fetch_markdowns,
