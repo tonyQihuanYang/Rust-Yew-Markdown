@@ -17,8 +17,8 @@ struct GraphQLData {
 
 #[derive(GraphQLQuery)]
 #[graphql(
-    schema_path = "./graphql/schema.graphql",
-    query_path = "./graphql/delete_markdown.graphql",
+    schema_path = "./src/graphql_requests/graphql/schema.graphql",
+    query_path = "./src/graphql_requests/graphql/delete_markdown.graphql",
     response_derives = "Debug"
 )]
 struct DeleteMarkdown;

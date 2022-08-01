@@ -8,8 +8,8 @@ use crate::models::markdown::Markdown;
 
 #[derive(GraphQLQuery)]
 #[graphql(
-    schema_path = "./graphql/schema.graphql",
-    query_path = "./graphql/create_markdown.graphql",
+    schema_path = "./src/graphql_requests/graphql/schema.graphql",
+    query_path = "./src/graphql_requests/graphql/create_markdown.graphql",
     response_derives = "Debug"
 )]
 struct CreateMarkdown;

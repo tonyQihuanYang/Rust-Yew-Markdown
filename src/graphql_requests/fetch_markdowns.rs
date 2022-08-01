@@ -19,8 +19,8 @@ pub struct MyResult {
 
 #[derive(GraphQLQuery)]
 #[graphql(
-    schema_path = "./graphql/schema.graphql",
-    query_path = "./graphql/all_markdowns.graphql",
+    schema_path = "./src/graphql_requests/graphql/schema.graphql",
+    query_path = "./src/graphql_requests/graphql/all_markdowns.graphql",
     response_derives = "Debug"
 )]
 struct AllMarkdowns;

@@ -5,8 +5,8 @@ use web_sys::{Request, RequestInit, RequestMode, Response};
 
 #[derive(GraphQLQuery)]
 #[graphql(
-    schema_path = "./graphql/schema.graphql",
-    query_path = "./graphql/update_markdown.graphql",
+    schema_path = "./src/graphql_requests/graphql/schema.graphql",
+    query_path = "./src/graphql_requests/graphql/update_markdown.graphql",
     response_derives = "Debug"
 )]
 struct UpdateMarkdown;
