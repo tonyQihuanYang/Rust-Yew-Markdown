@@ -1,13 +1,13 @@
 use wasm_bindgen_futures::spawn_local;
 use web_sys::{HtmlInputElement, InputEvent};
-use yew::prelude::*;
 use yew::{function_component, html, use_state, Callback, TargetCast};
 
 use crate::{
     features::header::header_entry::HeaderEntryComponent,
-    features::markdown_page::{
-        markdown_editor::markdown_entry::MarkdownEntry, markdown_list::markdown_list::MarkdownList,
+    features::markdown_page::features::{
+        editor::markdown_entry::MarkdownEntry, list::markdown_list::MarkdownList,
     },
+    features::markdown_page::ui::empty_content::EmptyContent,
     graphql_requests::{
         fetch_markdown_by_id::fetch_markdown_by_id, fetch_markdowns::fetch_markdowns,
     },
@@ -32,12 +32,12 @@ pub fn markdown_page() -> Html {
         })
     };
 
-    let on_markdown_edit = {
-        let markdown_selected = markdown_selected.clone();
-        Callback::from(move |input_string: String| {
-            markdown_selected.set((*markdown_selected).clone().update_context(input_string));
-        })
-    };
+    // let on_markdown_edit = {
+    //     let markdown_selected = markdown_selected.clone();
+    //     Callback::from(move |input_string: String| {
+    //         markdown_selected.set((*markdown_selected).clone().update_context(input_string));
+    //     })
+    // };
 
     let on_markdown_selected = {
         let markdown_selected = markdown_selected.clone();
@@ -96,7 +96,7 @@ pub fn markdown_page() -> Html {
         <div id="drawer">
         <MarkdownList
             markdowns={(*markdowns).clone()}
-            on_select={on_markdown_selected.clone()}
+            output_markdown_selected={on_markdown_selected.clone()}
         />
         </div>
         <div id="page-content">
@@ -105,7 +105,7 @@ pub fn markdown_page() -> Html {
                 }
                 else {
                     <MarkdownEntry
-                        on_input={on_markdown_edit.clone()}
+                        // on_input={on_markdown_edit.clone()}
                         selected_markdown={(*markdown_selected).clone()}
                         is_preview_visiable={(*user_setting).clone().is_show_preview}
                     />
@@ -113,18 +113,4 @@ pub fn markdown_page() -> Html {
         </div>
         </>
     };
-}
-
-#[function_component(EmptyContent)]
-pub fn empty_content() -> Html {
-    html! {
-        <div class="no-content-wrapper">
-            // <img src="img/avatar.png"
-            // class="rounded mx-auto d-block p-2"
-            // width="300" height="300"
-            // />
-            <h5 style="font-size: 260px;">{"🤔"}</h5>
-            <h5>{"Nahh! No markdown selected/found..."}</h5>
-        </div>
-    }
 }

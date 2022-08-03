@@ -5,15 +5,22 @@ pub struct GmModalProps {
     pub children: Children,
     pub visible: UseStateHandle<bool>,
     pub on_modal_close: Option<Callback<()>>,
+    pub title: Option<String>,
 }
 
 #[function_component(GmModal)]
 pub fn gm_modal(props: &GmModalProps) -> Html {
     let GmModalProps {
+        title,
         children,
         visible,
         on_modal_close,
     } = props;
+
+    let display_title = match title {
+        Some(el) => el,
+        None => "",
+    };
 
     let close_modal = {
         let is_modal_visiable = visible.clone();
@@ -36,7 +43,7 @@ pub fn gm_modal(props: &GmModalProps) -> Html {
                 <div class="gm-modal">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{"Create a new markdown"}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{display_title}</h5>
                     </div>
                     <div class="modal-body">
                         { for children.iter() }
