@@ -9,14 +9,14 @@ use super::markdown_list_features::list_item_delete_button::ListItemDeleteButton
 #[derive(PartialEq, Clone, Properties)]
 pub struct MarkdownListProps {
     pub markdowns: Vec<Markdown>,
-    pub on_select: Callback<Markdown>,
+    pub output_markdown_selected: Callback<Markdown>,
 }
 
 #[function_component(MarkdownList)]
 pub fn markdown_list(props: &MarkdownListProps) -> Html {
     let selected = use_state(|| "".to_string());
     let MarkdownListProps {
-        on_select,
+        output_markdown_selected,
         markdowns,
     } = props.clone();
 
@@ -31,10 +31,10 @@ pub fn markdown_list(props: &MarkdownListProps) -> Html {
                         onclick={
                             let markdown = markdown.clone();
                             let selected = selected.clone();
-                            let on_select = on_select.clone();
+                            let output_markdown_selected=output_markdown_selected.clone();
                             Callback::from(move |_| {
                                 selected.set(markdown.title.clone());
-                                on_select.emit(markdown.clone());
+                                output_markdown_selected.emit(markdown.clone());
                             })
                         }
                     >
@@ -42,9 +42,9 @@ pub fn markdown_list(props: &MarkdownListProps) -> Html {
                         <ListItemDeleteButton
                             markdown_id={markdown.id.clone()}
                             on_delete={
-                                let on_select = on_select.clone();
+                                let output_markdown_selected=output_markdown_selected.clone();
                                 Callback::from(move |_| {
-                                    on_select.emit(Markdown::default())
+                                    output_markdown_selected.emit(Markdown::default())
                                 })
                             }
                         />

@@ -6,10 +6,11 @@ use web_sys::{Request, RequestInit, RequestMode, Response};
 
 use crate::models::markdown::Markdown;
 
+use crate::API_URL;
 #[derive(GraphQLQuery)]
 #[graphql(
-    schema_path = "./graphql/schema.graphql",
-    query_path = "./graphql/create_markdown.graphql",
+    schema_path = "./src/graphql_requests/graphql/schema.graphql",
+    query_path = "./src/graphql_requests/graphql/create_markdown.graphql",
     response_derives = "Debug"
 )]
 struct CreateMarkdown;
@@ -42,9 +43,7 @@ pub async fn fetch_create_new_markdown(new_markdown: MarkdownInput) -> Result<Ma
     opts.method("POST");
     opts.body(Some(&JsValue::from_str(query.to_string().as_str())));
     opts.mode(RequestMode::Cors);
-    // let url = String::from("http://localhost:8081/graphql");
-    let url = String::from("https://apps.gummui.com/markdown-api/graphql");
-    let request = Request::new_with_str_and_init(url.as_str(), &opts)?;
+    let request = Request::new_with_str_and_init(API_URL, &opts)?;
     request.headers().set("Content-Type", "application/json")?;
 
     let window = web_sys::window().unwrap();

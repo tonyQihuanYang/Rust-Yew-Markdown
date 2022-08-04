@@ -21,15 +21,14 @@ input MarkdownInput {
 
 input MarkdownUpdateInput {
   id: String!
+  version: Int!
   title: String
   context: String
 }
 
-
 type Markdown {
   id: String!
+  version: Int!
   title: String!
   context: String!
 }
-
-

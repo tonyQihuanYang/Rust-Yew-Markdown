@@ -10,6 +10,7 @@ use yew::{
 pub struct MarkdownTitleProps {
     pub markdown_title: String,
     pub markdown_id: String,
+    pub markdown_version: i64,
 }
 
 #[function_component(MarkdownTitle)]
@@ -17,7 +18,8 @@ pub fn markdown_title(props: &MarkdownTitleProps) -> Html {
     let MarkdownTitleProps {
         markdown_title,
         markdown_id,
-    } = props;
+        markdown_version,
+    } = props.clone();
     let title = use_state(|| markdown_title.clone());
     let is_form_dirty = use_state(|| true);
 
@@ -50,12 +52,14 @@ pub fn markdown_title(props: &MarkdownTitleProps) -> Html {
         Callback::from(move |_| {
             if markdown_id != DEFAULT_ID {
                 let markdown_id = markdown_id.clone();
+                let markdown_version = markdown_version.clone();
                 let title = title.clone();
                 let is_form_dirty = is_form_dirty.clone();
                 spawn_local(async move {
                     log::info!("Update markdown title {} {}", markdown_id, *title);
                     fetch_update_markdown(MarkdownUpdateInput {
                         id: markdown_id,
+                        version: markdown_version,
                         title: Some((*title).to_string()),
                         context: None,
                     })

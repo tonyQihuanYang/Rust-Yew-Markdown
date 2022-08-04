@@ -3,5 +3,6 @@ query AllMarkdowns {
     id
     title
     context
+    version
   }
 }

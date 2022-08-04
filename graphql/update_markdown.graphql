@@ -1,7 +1,0 @@
-mutation UpdateMarkdown($newMarkdown: MarkdownUpdateInput!){
-  updateMarkdown(
-    input: $newMarkdown
-  ) {
-    id
-  }
-}
